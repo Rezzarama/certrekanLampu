@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sesi 3 Cetrakan Lampu</title>
+    <style>
+      .switch {
+        position: relative;
+        width: 60px;
+        height: 34px;
+        display: inline-block;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        inset: 0;
+        background-color: #ccc;
+        border-radius: 17px;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+
+      .slider::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        bottom: 4px;
+        width: 26px;
+        height: 26px;
+        background-color: white;
+        border-radius: 50%;
+        transition: 0.3s;
+      }
+
+      .switch input:checked ~ .slider {
+        background-color: blue;
+      }
+      .switch input:checked ~ .slider::before {
+        transform: translateX(26px);
+      }
+
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: darkslategrey;
+        text-align: center;
+        line-height: 1.6;
+      }
+      h1 {
+        color: white;
+      }
+
+      .ruangan-keluarga {
+        background-color: chocolate;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px 0;
+        border-bottom: 1px solid #ccc;
+      }
+      .ruangan-item {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+      .grup-lampu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      @media (min-width: 48em) {
+        .ruangan-keluarga {
+          flex-direction: row;
+          justify-content: space-between;
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Cetrekan Lampu</h1>
+    <div>
+      <div class="ruangan-keluarga">
+        <h2>Ruang keluarga</h2>
+        <div class="ruangan-item">
+          <div class="grup-lampu">
+            <img src="Images/off.gif" alt="Lampu off" id="lampu1" />
+            <label class="switch">
+              <input
+                type="checkbox"
+                onchange="saklar(this, lampu1)"
+                id="toggle1"
+              />
+              <span class="slider"></span>
+            </label>
+            <!-- <button onclick="saklar('on', 1)">Hidupkan Lampu 1</button>
+            <button onclick="saklar('off', 1)">Matikan Lampu 1</button> -->
+          </div>
+          <div class="grup-lampu">
+            <img src="Images/off.gif" alt="Lampu off" id="lampu2" />
+            <label class="switch">
+              <input
+                type="checkbox"
+                onchange="saklar(this, lampu2)"
+                id="toggle2"
+              />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="grup-lampu">
+            <img src="Images/off.gif" alt="Lampu off" id="lampu3" />
+            <label class="switch">
+              <input
+                type="checkbox"
+                onchange="saklar(this, lampu3)"
+                id="toggle3"
+              />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <label class="switch">
+          <input
+            type="checkbox"
+            onchange="saklarGrup(this, 'keluarga')"
+            id="ruangan-keluarga"
+          />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="ruangan-keluarga">
+        <h2>Ruang tidur</h2>
+        <div class="ruangan-item">
+          <div class="grup-lampu">
+            <img src="Images/off.gif" alt="Lampu off" id="lampu4" />
+            <label class="switch">
+              <input
+                type="checkbox"
+                onchange="saklar(this, lampu4)"
+                id="toggle4"
+              />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <label class="switch"> </label>
+      </div>
+
+      <div class="ruangan-keluarga">
+        <h2>Ruang Makan</h2>
+        <div class="ruangan-item">
+          <div class="grup-lampu">
+            <img src="Images/off.gif" alt="Lampu off" id="lampu5" />
+            <label class="switch">
+              <input
+                type="checkbox"
+                onchange="saklar(this, lampu5)"
+                id="toggle5"
+              />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="grup-lampu">
+            <img src="Images/off.gif" alt="Lampu off" id="lampu6" />
+            <label class="switch">
+              <input
+                type="checkbox"
+                onchange="saklar(this, lampu6)"
+                id="toggle6"
+              />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <label class="switch">
+          <input
+            type="checkbox"
+            onchange="saklarGrup(this, 'tidur')"
+            id="ruangan-tidur"
+          />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="ruangan-keluarga">
+        <h2>Ruang Tamu</h2>
+        <div class="ruangan-item">
+          <div class="grup-lampu">
+            <img src="Images/off.gif" alt="Lampu off" id="lampu7" />
+            <label class="switch">
+              <input
+                type="checkbox"
+                onchange="saklar(this, lampu7)"
+                id="toggle7"
+              />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="grup-lampu">
+            <img src="Images/off.gif" alt="Lampu off" id="lampu8" />
+            <label class="switch">
+              <input
+                type="checkbox"
+                onchange="saklar(this, lampu8)"
+                id="toggle8"
+              />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="grup-lampu">
+            <img src="Images/off.gif" alt="Lampu off" id="lampu9" />
+            <label class="switch">
+              <input
+                type="checkbox"
+                onchange="saklar(this, lampu9)"
+                id="toggle9"
+              />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="grup-lampu">
+            <img src="Images/off.gif" alt="Lampu off" id="lampu10" />
+            <label class="switch">
+              <input
+                type="checkbox"
+                onchange="saklar(this, lampu10)"
+                id="toggle10"
+              />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <label class="switch">
+          <input
+            type="checkbox"
+            onchange="saklarGrup(this, 'tamu')"
+            id="ruangan-tamu"
+          />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+    <script>
+      // let toggle1 = document.getElementById("toggle1");
+      // let toggle2 = document.getElementById("toggle2");
+      // let toggle3 = document.getElementById("toggle3");
+      // let toggle4 = document.getElementById("toggle4");
+      // let toggle5 = document.getElementById("toggle5");
+      // let toggle6 = document.getElementById("toggle6");
+      // let toggle7 = document.getElementById("toggle7");
+      // let toggle8 = document.getElementById("toggle8");
+      // let toggle9 = document.getElementById("toggle9");
+      // let toggle10 = document.getElementById("toggle10");
+      // let ruanganKeluarga = document.getElementById("ruangan-keluarga");
+      // let ruanganTidur = document.getElementById("ruangan-tidur");
+      // let ruanganTamu = document.getElementById("ruangan-tamu");
+      let lampu1 = document.getElementById("lampu1");
+      let lampu2 = document.getElementById("lampu2");
+      let lampu3 = document.getElementById("lampu3");
+      let lampu4 = document.getElementById("lampu4");
+      let lampu5 = document.getElementById("lampu5");
+      let lampu6 = document.getElementById("lampu6");
+      let lampu7 = document.getElementById("lampu7");
+      let lampu8 = document.getElementById("lampu8");
+      let lampu9 = document.getElementById("lampu9");
+      let lampu10 = document.getElementById("lampu10");
+
+      // function saklarGrup() {
+      //   if (ruanganKeluarga.checked) {
+      //     lampu1.src = "images/on.gif";
+      //     lampu2.src = "images/on.gif";
+      //     lampu3.src = "images/on.gif";
+      //   } else {
+      //     lampu1.src = "images/off.gif";
+      //     lampu2.src = "images/off.gif";
+      //     lampu3.src = "images/off.gif";
+      //   }
+      //   if (ruanganTidur.checked) {
+      //     lampu5.src = "images/on.gif";
+      //     lampu6.src = "images/on.gif";
+      //   } else {
+      //     lampu5.src = "images/off.gif";
+      //     lampu6.src = "images/off.gif";
+      //   }
+      //   if (ruanganTamu.checked) {
+      //     lampu7.src = "images/on.gif";
+      //     lampu8.src = "images/on.gif";
+      //     lampu9.src = "images/on.gif";
+      //     lampu10.src = "images/on.gif";
+      //   } else {
+      //     lampu7.src = "images/off.gif";
+      //     lampu8.src = "images/off.gif";
+      //     lampu9.src = "images/off.gif";
+      //     lampu10.src = "images/off.gif";
+      //   }
+      // }
+      // function saklar(this, lampu) {
+      //   if (toggle1.checked) {
+      //     lampu1.src = "images/on.gif";
+      //   } else {
+      //     lampu1.src = "images/off.gif";
+      //   }
+      //   if (toggle2.checked) {
+      //     lampu2.src = "images/on.gif";
+      //   } else {
+      //     lampu2.src = "images/off.gif";
+      //   }
+      //   if (toggle3.checked) {
+      //     lampu3.src = "images/on.gif";
+      //   } else {
+      //     lampu3.src = "images/off.gif";
+      //   }
+      //   if (toggle4.checked) {
+      //     lampu4.src = "images/on.gif";
+      //   } else {
+      //     lampu4.src = "images/off.gif";
+      //   }
+      //   if (toggle5.checked) {
+      //     lampu5.src = "images/on.gif";
+      //   } else {
+      //     lampu5.src = "images/off.gif";
+      //   }
+      //   if (toggle6.checked) {
+      //     lampu6.src = "images/on.gif";
+      //   } else {
+      //     lampu6.src = "images/off.gif";
+      //   }
+      //   if (toggle7.checked) {
+      //     lampu7.src = "images/on.gif";
+      //   } else {
+      //     lampu7.src = "images/off.gif";
+      //   }
+      //   if (toggle8.checked) {
+      //     lampu8.src = "images/on.gif";
+      //   } else {
+      //     lampu8.src = "images/off.gif";
+      //   }
+      //   if (toggle9.checked) {
+      //     lampu9.src = "images/on.gif";
+      //   } else {
+      //     lampu9.src = "images/off.gif";
+      //   }
+      //   if (toggle10.checked) {
+      //     lampu10.src = "images/on.gif";
+      //   } else {
+      //     lampu10.src = "images/off.gif";
+      //   }
+      // }
+
+      function saklarGrup(toggle, ruangan) {
+        if (ruangan == "keluarga") {
+          if (toggle.checked) {
+            lampu1.src = "images/on.gif";
+            lampu2.src = "images/on.gif";
+            lampu3.src = "images/on.gif";
+          } else {
+            lampu1.src = "images/off.gif";
+            lampu2.src = "images/off.gif";
+            lampu3.src = "images/off.gif";
+          }
+        }
+        if (ruangan == "tidur") {
+          if (toggle.checked) {
+            lampu5.src = "images/on.gif";
+            lampu6.src = "images/on.gif";
+          } else {
+            lampu5.src = "images/off.gif";
+            lampu6.src = "images/off.gif";
+          }
+        }
+        if (ruangan == "tamu") {
+          if (toggle.checked) {
+            lampu7.src = "images/on.gif";
+            lampu8.src = "images/on.gif";
+            lampu9.src = "images/on.gif";
+            lampu10.src = "images/on.gif";
+          } else {
+            lampu7.src = "images/off.gif";
+            lampu8.src = "images/off.gif";
+            lampu9.src = "images/off.gif";
+            lampu10.src = "images/off.gif";
+          }
+        }
+      }
+      function saklar(toggle, lampu) {
+        if (toggle.checked) {
+          lampu.src = "images/on.gif";
+        } else {
+          lampu.src = "images/off.gif";
+        }
+      }
+    </script>
+  </body>
+</html>
